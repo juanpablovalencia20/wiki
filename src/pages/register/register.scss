@@ -6,27 +6,28 @@
     justify-content: center;
 
     .card {
-        width: 50%;
+        width: 60%;
+        height: 80%;
         display: flex;
         flex-direction: row-reverse;
         background-color: white;
         border-radius: 10px;
-        min-height: 600px;
+        min-height: 60px;
         overflow: hidden;
 
         .left {
             flex: 1;
             background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)),
-                url("https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1") center;
+            url("https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1") center;
             background-size: cover;
             padding: 50px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 10px;
             color: white;
 
             h1 {
-                font-size: 100px;
+                font-size: 70px;
                 line-height: 100px;
             }
 
@@ -50,7 +51,6 @@
             padding: 50px;
             display: flex;
             flex-direction: column;
-            gap: 50px;
             justify-content: center;
 
             h1 {

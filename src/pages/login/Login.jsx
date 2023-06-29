@@ -17,9 +17,7 @@ const handleLogin = () => {
         <div className="left">
           <h1>Virtual T</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
+         Bienvenido developer.
           </p>
           <span>No tienes cuenta?</span>
           <Link to="/register">
@@ -27,7 +25,7 @@ const handleLogin = () => {
           </Link>
         </div>
         <div className="right">
-          <h1>Login</h1>
+          <h1>Iniciar Sesión</h1>
           <form>
             <input type="text" placeholder="Username" />
             <input type="password" placeholder="Password" />

@@ -18,7 +18,7 @@
         .left {
             flex: 1;
             background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)),
-            url("https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1") center;
+                url("https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1") center;
             background-size: cover;
             padding: 50px;
             display: flex;
@@ -80,4 +80,30 @@
             }
         }
     }
+    .password-input {
+        position: relative;
+      }
+      
+      .password-input input {
+        width: 95%; 
+        padding-right: 20px; 
+        height: 20px; 
+      }
+      
+      .password-toggle {
+        position: absolute;
+        top: 50%;
+        color: #c8abab;
+        right: 10px; 
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+      .error-item {
+        background-color: rgb(225, 227, 225);
+        color: rgb(16, 16, 16);
+        padding: 5px;
+        margin-top: 9px;
+        margin-bottom: 5px;
+    }
 }
+

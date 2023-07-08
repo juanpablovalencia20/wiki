@@ -1,28 +1,82 @@
-import { createContext, useEffect, useState } from "react";
+import React, { useReducer, createContext, useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
 
-export const AuthContext = createContext();
+const initialState = {
+  user: JSON.parse(localStorage.getItem('user')) || null
+};
 
-export const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || null
-  );
+const token = localStorage.getItem('jwtToken');
 
-  const login = () => {
-    setCurrentUser({
-      id: 1,
-      name: "John Doe",
-      profilePic:
-        "https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    });
-  };
+if (token) {
+  const decodedToken = jwtDecode(token);
+  if (decodedToken.exp * 1000 > Date.now()) {
+    initialState.user = JSON.parse(localStorage.getItem('user')) || decodedToken;
+  } else {
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('user');
+  }
+}
+
+const AuthContext = createContext({
+  user: null,
+  login: (userData) => { },
+  logout: () => { }
+});
+
+function authReducer(state, action) {
+  switch (action.type) {
+    case 'LOGIN':
+      return {
+        ...state,
+        user: action.payload
+      };
+    case 'LOGOUT':
+      return {
+        ...state,
+        user: null
+      };
+    default:
+      return state;
+  }
+}
+
+function AuthProvider(props) {
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(currentUser));
-  }, [currentUser]);
+    const access_token = localStorage.getItem('jwtToken');
+    if (access_token) {
+      const decodedToken = jwtDecode(access_token);
+      if (decodedToken.exp * 1000 < Date.now()) {
+        localStorage.removeItem('jwtToken');
+        localStorage.removeItem('user');
+        dispatch({ type: 'LOGOUT' });
+      }
+    }
+  }, []);
+
+  function login(userData) {
+    const { access_token, user } = userData;
+    localStorage.setItem('jwtToken', access_token);
+    localStorage.setItem('user', JSON.stringify(user));
+    dispatch({
+      type: 'LOGIN',
+      payload: user
+    });
+  }
+
+  function logout() {
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('user');
+    dispatch({ type: 'LOGOUT' });
+  }
 
   return (
-    <AuthContext.Provider value={{ currentUser, login }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider
+      value={{ user: state.user, login, logout }}
+      {...props}
+    />
   );
-};
+}
+
+export { AuthContext, AuthProvider };

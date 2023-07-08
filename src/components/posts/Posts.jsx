@@ -1,7 +1,7 @@
 import Post from "../post/Post";
 import "./posts.scss";
 
-const Posts = () => {
+function Posts () {
 
   const posts = [
     {

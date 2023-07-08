@@ -78,9 +78,36 @@
                     color: white;
                     font-weight: bold;
                     cursor: pointer;
-                   
+
                 }
             }
         }
     }
+    
+    .password-input {
+        position: relative;
+      }
+      
+      .password-input input {
+        width: 95%; 
+        padding-right: 30px; 
+        height: 30px; 
+      }
+      
+      .password-toggle {
+        position: absolute;
+        top: 50%;
+        color: #c8abab;
+        right: 10px; 
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+      .error-item {
+        background-color: rgb(225, 227, 225);
+        color: rgb(16, 16, 16);
+        padding: 5px;
+        margin-top: 9px;
+        margin-bottom: 5px;
+    }
+      
 }

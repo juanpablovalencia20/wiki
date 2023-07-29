@@ -1,103 +1,26 @@
-import { useContext, useRef, useState } from "react";
-import "./stories.scss"
-import { AuthContext } from "../../context/authContext"
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import './stories.scss';
 
-const Stories = () => {
-
-  const {user} = useContext(AuthContext)
-
-
-  const stories = [
-    {
-      id: 1,
-      name: "John Doe 1",
-      img: "https://miro.medium.com/v2/resize:fit:1400/1*XTC3AOBES_rptdQdtiVf5Q.png",
-    },
-    {
-      id: 2,
-      name: "John Doe 2",
-      img: "https://code.visualstudio.com/opengraphimg/opengraph-home.png",
-    },
-    {
-      id: 3,
-      name: "John Doe",
-      img: "https://miro.medium.com/v2/resize:fit:1400/1*2ry-iDo34Dn-0cloQ5gYiA.png",
-    },
-    {
-      id: 4,
-      name: "John Doe 4",
-      img: "https://res.cloudinary.com/highereducation/images/f_auto,q_auto/v1659635843/BestColleges.com/Bootcamp-Student-Learning-to-Code_301240e55a/Bootcamp-Student-Learning-to-Code_301240e55a.jpg",
-    },
-    {
-      id: 1,
-      name: "John Doe 1",
-      img: "https://miro.medium.com/v2/resize:fit:1400/1*XTC3AOBES_rptdQdtiVf5Q.png",
-    },
-    {
-      id: 2,
-      name: "John Doe 2",
-      img: "https://code.visualstudio.com/opengraphimg/opengraph-home.png",
-    },
-    {
-      id: 3,
-      name: "John Doe 3",
-      img: "https://miro.medium.com/v2/resize:fit:1400/1*2ry-iDo34Dn-0cloQ5gYiA.png",
-    },
-    {
-      id: 4,
-      name: "John Doe 4",
-      img: "https://res.cloudinary.com/highereducation/images/f_auto,q_auto/v1659635843/BestColleges.com/Bootcamp-Student-Learning-to-Code_301240e55a/Bootcamp-Student-Learning-to-Code_301240e55a.jpg",
-    },
-    {
-      id: 4,
-      name: "James",
-      img: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    },
-  ];
-
-  const storiesRef = useRef(null);
-
-  const handleScrollLeft = () => {
-    const container = storiesRef.current;
-    container.scrollBy({
-      left: -200,
-      behavior: 'smooth',
-    });
-  };
-
-  const handleScrollRight = () => {
-    const container = storiesRef.current;
-    container.scrollBy({
-      left: 200,
-      behavior: 'smooth',
-    });
-  };
-
+function Story({ image, profileSrc, title, showButton, onButtonClick }) {
   return (
-    <div className="stories-container">
-      <div className="stories-wrapper" ref={storiesRef}>
-        <div className="scroll-button prev" onClick={handleScrollLeft}></div>
-        <div className="stories">
-        <div class="stories">
-          <div class="story">
-            <img src={user.profile_img} alt="" />
-            <span>{user.name}</span>
-            <button>+</button>
+    <div style={{ backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat' }} className="story">
+      <Avatar className="story__avatar" src={profileSrc} />
+      <h4>{title}</h4>
+      {showButton && (
+        <div className="story__button">
+          <Fab color="primary" aria-label="Add" onClick={onButtonClick}>
+            <AddIcon />
+          </Fab>
+          <div className="add__history">
+          <span>Añadir Historia</span>
           </div>
-          {stories.map(story => (
-            <div class="story" key={story.id}>
-              <img src={story.img} alt="" />
-              <span>{story.name}</span>
-            </div>
-          ))}
-          </div>
-          <div className="scroll-button next" onClick={handleScrollRight}></div>
         </div>
-      </div>
+      )}
     </div>
   );
-};
+}
 
-export default Stories;
+export default Story;

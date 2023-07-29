@@ -1,12 +1,12 @@
 import "./home.scss";
 import Posts from "../../components/posts/Posts";
-import Stories from "../../components/stories/Stories";
+import StoryReel from "../../components/storyReel/StoryReel";
 import AddPost from "../../components/addPost/AddPost";
 function Home() {
   
   return (
     <div className="home">
-      <Stories />
+      <StoryReel />
       <AddPost/>
       <Posts />
     </div>

@@ -1,0 +1,68 @@
+@import "../../style.scss";
+
+.stories-container {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+  max-width: 680px;
+
+  
+}
+
+.scroll-buttons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scroll-button {
+  position: sticky;
+  width: 50px;
+  height: 50px;
+  color: aliceblue;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.scroll-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.scroll-button.prev {
+  margin-bottom: 24px;
+  width: 30px;
+  height: 30px;
+  left: 10px;
+}
+
+
+.scroll-button.next {
+  width: 30px;
+  height: 30px;
+  right: 10px;
+}
+
+.stories {
+  position: relative;
+  display: flex;
+  align-items: center;
+  scroll-behavior: smooth;
+  gap: 5px;
+  width: fit-content;
+}
+
+.stories-container:hover .scroll-buttons {
+  display: flex;
+}

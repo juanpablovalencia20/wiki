@@ -1,132 +1,75 @@
-@import "../../style.scss";
-
-.stories-container {
+.story {
   position: relative;
-  overflow-x: hidden !important;
-  white-space: nowrap;
-  max-width: 100%;
-
-  .stories-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
-
-  .scroll-button {
-    position: absolute;
-    top: 45%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    color: aliceblue;
-    // background-color: #ffffff;
-    border-radius: 50%;
-    display: none;
-    cursor: pointer;
-    z-index: 2;
-
-    &.prev {
-      left: 10px;
-      background-image: url('../../assets/left.png');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 50% auto;
-      color: aliceblue;
-    }
-  
-    &.next {
-      right: 10px;
-      background-image: url('../../assets/right.png');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 50% auto;
-    }
-  }
-
-  .stories {
-    display: flex;
-    gap: 10px;
-    height: 250px;
-    margin-bottom: 30px;
-  
-    @include mobile {
-      height: 50px;
-      margin-bottom: 0;
-      justify-content: space-between;
-    }
-  
-    @include tablet{
-      height: 150px;
-      gap: 20px;
-    }
-  
-    .story {
-      display: flex;
-      align-items: center;
-      flex: none;
-      height: 250px;
-      border-radius: 10px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(97, 97, 97, 0)), linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(97, 97, 97, 0));
-  
-      @include mobile {
-        flex: none;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-      }
-  
-      img {
-        object-fit: cover;
-        width: 200px;
-        height: auto;
-        max-width: 100%;
-        max-height: 100%;
-        
-      }
-      span {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        color: white;
-        font-weight: 500;
-        @include mobile {
-          display: none;
-        }
-      }
-  
-      button {
-        position: absolute;
-        bottom: 40px;
-        left: 10px;
-        color: white;
-        background-color: #5271ff;
-        border: none;
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        font-size: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-  
-        @include mobile {
-         left: 0;
-         right: 0;
-         top: 0;
-         bottom: 0;
-         margin: auto;
-        }
-      }
-    }
-  }
-
-  &:hover .scroll-button {
-    display: block;
-  }
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 200px;
+  box-shadow: 0px 5px 17px -7px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  margin-right: 10px;
+  transition: transform 100ms ease-in;
+  cursor: pointer;
+  margin-top: 0;
 }
+
+.story:hover {
+  transform: scale(1.07);
+}
+
+.story__avatar {
+  margin: 10px;
+  border: 5px solid #2e81f4;
+}
+
+.story>h4 {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+}
+
+.story__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  color: white;
+  text-align: justify;
+}
+
+.story__content span {
+  margin-top: 4px;
+}
+.story__button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.story__button button {
+  background-color: blue;
+  color: white;
+  width: 35px;
+  height: 35px;
+}
+
+.story__button span {
+  margin-top: 4px;
+}
+
+.add__history{
+  color: aliceblue;
+ 
+  text-align: center;
+}
+
+

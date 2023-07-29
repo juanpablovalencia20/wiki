@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Outlet, Navigate } from 'react-router-dom';
 import './App.css';
 import "./style.scss";
 import Navbar from './components/navbar/Navbar';
@@ -10,10 +10,11 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Profile from './pages/profile/Profile';
+import { AuthContext } from "./context/authContext";
 
 function App() {
-
   const { darkMode } = useContext(DarkModeContext);
+  const { user } = useContext(AuthContext); 
 
   const Layout = () => {
     return (
@@ -31,19 +32,18 @@ function App() {
   };
 
   return (
-
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />} >
+        <Route
+          path="/"
+          element={user ? <Layout /> : <Navigate to="/login" />}>
           <Route index element={<Home />} />
           <Route path="/profile/:id" element={<Profile />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-      
       </Routes>
     </Router>
-
   );
 }
 

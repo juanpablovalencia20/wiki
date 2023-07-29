@@ -34,7 +34,7 @@ const RightBar = () => {
           </div>
         </div>
         <div className="item">
-          <span>Amigo en linea</span>
+          <span>Amigos en linea</span>
           <div className="user">
             <div className="userInfo">
               <img

@@ -1,27 +1,23 @@
 import "./addPost.scss";
 import { AuthContext } from "../../context/authContext"
 import { useContext, useState } from "react";
-import { Close, EmojiEmotions, PermMedia} from "@mui/icons-material";
+import { Close, EmojiEmotions, PermMedia } from "@mui/icons-material";
 import TagRoundedIcon from '@mui/icons-material/TagRounded';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
-import  Picker  from "@emoji-mart/react";
+import Picker from "@emoji-mart/react";
 
-
-function AddPost () {
- 
-
+function AddPost() {
   const { user } = useContext(AuthContext);
   const [input, setInput] = useState("");
   const [showEmojis, setShowEmojis] = useState(false);
+  const [mediaFiles, setMediaFiles] = useState([]);
 
-  const [img, setImg] = useState(null);
-
-
-  const removeImage = () => {
-    setImg(null);
+  const removeImage = (index) => {
+    const updatedMediaFiles = [...mediaFiles];
+    updatedMediaFiles.splice(index, 1);
+    setMediaFiles(updatedMediaFiles);
   };
 
-  
   const addEmoji = (e) => {
     let sym = e.unified.split("-");
     let codesArray = [];
@@ -30,7 +26,6 @@ function AddPost () {
     setInput(input + emoji);
   };
 
- 
   return (
     <div className="share">
       <div className="shareWrapper">
@@ -45,22 +40,23 @@ function AddPost () {
             className="shareInput"
             onChange={(e) => setInput(e.target.value)}
           />
-          <SendRoundedIcon/>
+          <SendRoundedIcon />
         </div>
         <hr className="shareHr" />
-        {img && (
-          <div className="shareImgContainer">
-            <img src={URL.createObjectURL(img)} alt="" className="shareImg" />
-            <Close className="shareCancelImg" onClick={removeImage} />
+        {mediaFiles.map((file, index) => (
+          <div className="shareImgContainer" key={index}>
+            {file.type.startsWith("image/") ? (
+              <img src={URL.createObjectURL(file)} alt="" className="shareImg" />
+            ) : (
+              <video src={URL.createObjectURL(file)} className="shareVideo" controls />
+            )}
+            <Close className="shareCancelImg" onClick={() => removeImage(index)} />
           </div>
-        )}
+        ))}
         <div className="shareBottom">
           <div className="shareOptions">
             <div className="shareOption">
-              <TagRoundedIcon
-                className="shareIcon"
-                style={{ color: "#bb0000f2" }}
-              />
+              <TagRoundedIcon className="shareIcon" style={{ color: "#bb0000f2" }} />
               <span className="shareOptionText">Categorias</span>
             </div>
             <label htmlFor="file" className="shareOption">
@@ -69,19 +65,17 @@ function AddPost () {
               <input
                 type="file"
                 id="file"
-                accept=".png,.jpeg,.jpg"
+                accept=".png, .jpeg, .jpg, .mp4, .avi, .mov"
                 style={{ display: "none" }}
-                onChange={(e) => setImg(e.target.files[0])}
+                onChange={(e) => setMediaFiles([...mediaFiles, ...e.target.files])}
+                multiple // Permite seleccionar múltiples archivos
               />
             </label>
             <div
               onClick={() => setShowEmojis(!showEmojis)}
               className="shareOption"
             >
-              <EmojiEmotions
-                className="shareIcon"
-                style={{ color: "#bfc600ec" }}
-              />
+              <EmojiEmotions className="shareIcon" style={{ color: "#bfc600ec" }} />
               <span className="shareOptionText">Emojis</span>
             </div>
           </div>
@@ -95,7 +89,5 @@ function AddPost () {
     </div>
   );
 };
-
-
 
 export default AddPost;

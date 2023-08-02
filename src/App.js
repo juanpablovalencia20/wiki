@@ -7,10 +7,10 @@ import LeftBar from './components/leftBar/LeftBar';
 import RightBar from './components/rightBar/RightBar';
 import { DarkModeContext } from './context/darkModeContext';
 import Home from './pages/home/Home';
-import Login from './pages/login/Login';
-import Register from './pages/register/Register';
+import Auth from './pages/auth/Auth';
 import Profile from './pages/profile/Profile';
 import { AuthContext } from "./context/authContext";
+
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -36,12 +36,11 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={user ? <Layout /> : <Navigate to="/login" />}>
+          element={user ? <Layout /> : <Navigate to="/auth" />}>
           <Route index element={<Home />} />
           <Route path="/profile/:id" element={<Profile />} />
         </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
     </Router>
   );

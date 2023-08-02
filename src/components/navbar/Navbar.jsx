@@ -124,7 +124,7 @@ function Navbar() {
             </MenuItem>
           </Link>
           <Divider />
-          <MenuItem onClick={logout} as={Link} to="/login">
+          <MenuItem onClick={logout} as={Link} to="/auth">
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>

@@ -7,13 +7,15 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
 import Comments from "../comments/Comments";
 import { useState } from "react";
+import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from "react-player";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { margin } from "@mui/system";
 
 function Post({ publication }) {
   const [commentOpen, setCommentOpen] = useState(false);
   const liked = false;
 
-  console.log(publication);
 
   return (
     <div className="post">
@@ -36,7 +38,7 @@ function Post({ publication }) {
         <div className="content">
           <p>{publication.description}</p>
 
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", marginBottom: "20px"}}>
             {publication.categories.map((categoria, index) => (
               <a
                 key={index}
@@ -48,33 +50,28 @@ function Post({ publication }) {
             ))}
           </div>
 
-        
-          <div className="image-grid">
-  {publication.multimedia
-    .filter(media =>media.mimeType.startsWith("video/"))
-    .map((media, index) => (
-      <div  key={index} className="grid-ass">
-        <div className="video-wrapper">
-          <ReactPlayer
-            url={media.url}
-            controls
-            width="100%"
-            height="100%"
-          />
-        </div>
-      </div>
-    ))}
+      
+       
 
-  {publication.multimedia
-    .filter( media => media.mimeType.startsWith("image/"))
-    .map((media, index) => (
-      <div key={index} className="grid-item">
-        <div className="image-item">
-          <img src={media.url} alt={`Image ${index}`} />
+          <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} emulateTouch={true}>
+      {publication.multimedia.map((media, index) => (
+        <div key={index} className="carousel-item"> {/* Aplicar la clase aquí */}
+          {media.mimeType.startsWith("video/") ? (
+            <ReactPlayer
+              url={media.url}
+              controls
+              width="100%"
+              height="100%"
+            />
+          ) : (
+            <img src={media.url} alt={`Media ${index}`} />
+          )}
         </div>
-      </div>
-    ))}
-</div>
+      ))}
+    </Carousel>
+
+
+
 
 
 

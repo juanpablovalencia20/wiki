@@ -1,11 +1,12 @@
 import "./rightBar.scss";
+import ChatIcon from '@mui/icons-material/Chat';
 
 const RightBar = () => {
   return (
     <div className="rightBar">
       <div className="container">
         <div className="item">
-          <span>Sugerencias para ti</span>
+          <span>Canales</span>
           <div className="user">
             <div className="userInfo">
               <img
@@ -14,10 +15,7 @@ const RightBar = () => {
               />
               <span>Jane Doe</span>
             </div>
-            <div className="buttons">
-              <button>Seguir</button>
-              <button>Olvidar</button>
-            </div>
+     
           </div>
           <div className="user">
             <div className="userInfo">
@@ -27,14 +25,11 @@ const RightBar = () => {
               />
               <span>Jane Doe</span>
             </div>
-            <div className="buttons">
-              <button>Seguir</button>
-              <button>Olvidar</button>
-            </div>
+           
           </div>
         </div>
         <div className="item">
-          <span>Amigos en linea</span>
+          <span>Ultimos chats</span>
           <div className="user">
             <div className="userInfo">
               <img

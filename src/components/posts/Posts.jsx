@@ -17,20 +17,18 @@ function Posts () {
   </div>;
 };
 
-const PUBLICATIONS_QUERY = gql`
+export const PUBLICATIONS_QUERY = gql`
  {
   publications{
     id
-description
+    description
+    createdAt
     user{
       id
       name
       email
       profile_img
       
-    }
-    categories{
-      name
     }
     multimedia{
       id

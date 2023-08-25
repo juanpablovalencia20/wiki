@@ -2,7 +2,7 @@
 
 .share{
   @include themify($themes) {
-  width: 99%;
+  width: 130%;
   margin-bottom: 20px;
   font-family:  Arial, Helvetica, sans-serif;
   height: 170%;
@@ -103,13 +103,8 @@
               }
           }
       }
-      .emoji{
-          position: relative;
-          padding: 0 20px 10px 20px;
-          width: 100%;
-          top: 20px;
-          left: 70px;
-      }
+
+
 
   }
 }

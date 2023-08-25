@@ -11,8 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import LockIcon from "@mui/icons-material/Lock";
 import Logo from "../../assets/logo.png";
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GoogleIcon from '@mui/icons-material/Google';
+
 
 
 
@@ -137,16 +136,6 @@ function Auth(props) {
               </div>
             </div>
             <input type="submit" value="Iniciar Sesión" class="btn solid" />
-            <p class="social-text">Or Sign in with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i> <FacebookIcon/></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i> <GoogleIcon/></i>
-              </a>
-          
-            </div>
           </form>
 
           <form
@@ -194,16 +183,6 @@ function Auth(props) {
             </div>
 
             <input type="submit" class="btn" value="Registarse" />
-            <p class="social-text">Or Sign up with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i> <FacebookIcon/></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i> <GoogleIcon/></i>
-              </a>
-          
-            </div>  
           </form>
         </div>
       </div>

@@ -10,13 +10,14 @@ import { useState } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from "react-player";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { margin } from "@mui/system";
+import moment from 'moment';
+import 'moment/locale/es'; 
 
 function Post({ publication }) {
   const [commentOpen, setCommentOpen] = useState(false);
   const liked = false;
 
-
+  moment.locale('es');
   return (
     <div className="post">
       <div className="container">
@@ -30,29 +31,13 @@ function Post({ publication }) {
               >
                 <span className="name">{publication.user.name}</span>
               </Link>
-              <span className="date">1 min ago</span>
+              <span className="date">Hace {moment(publication.createdAt).fromNow(true)}</span>
             </div>
           </div>
           <MoreHorizIcon />
         </div>
         <div className="content">
           <p>{publication.description}</p>
-
-          <div style={{ display: "flex", marginBottom: "20px"}}>
-            {publication.categories.map((categoria, index) => (
-              <a
-                key={index}
-                href={`#${categoria.name}`}
-                style={{ marginRight: "10px" }}
-              >
-                #{categoria.name}
-              </a>
-            ))}
-          </div>
-
-      
-       
-
           <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} emulateTouch={true}>
       {publication.multimedia.map((media, index) => (
         <div key={index} className="carousel-item"> {/* Aplicar la clase aquí */}
@@ -69,9 +54,6 @@ function Post({ publication }) {
         </div>
       ))}
     </Carousel>
-
-
-
 
 
 
